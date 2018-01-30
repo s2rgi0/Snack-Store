@@ -8,10 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Snack Store') }}</title>
+    <title>Snack Store App</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -77,5 +78,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+        
+    $(document).ready(function(){
+
+   
+        $('.buy-snack').click(function(){
+            var combo= $('#combo-buy').find('option:selected').val();;
+            $('#snack_qty').val(  combo );
+        });
+
+
+    });
+
+    </script>
 </body>
 </html>

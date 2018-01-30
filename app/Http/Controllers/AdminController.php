@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class AdminController extends Controller
 {
@@ -22,7 +23,9 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin');
+    {   
+        //get products
+        $products = Product:::orderBy('name', 'ASC')->paginate(9);
+        return view('admin', compact('products'));
     }
 }
