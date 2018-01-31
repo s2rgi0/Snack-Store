@@ -21,7 +21,7 @@ class AdminProductController extends Controller
     {
         //dd($request->all());
         $validator = Validator::make($request->all(), [
-            'id_add'  => 'required|integer',
+            'name'  => 'required',
             'price_add'   => 'required|numeric|between:0,9999.99',
             'amount_add'   => 'required|integer',       
         ]);
@@ -34,15 +34,15 @@ class AdminProductController extends Controller
 
             $product = new Product;
             $product->name = $request->name;
-            $product->price = $request->price;
-            $product->amount = $request->amount;
+            $product->price = $request->price_add;
+            $product->amount = $request->amount_add;
             $product->likes = 0;
         
             $product->save();
 
             $price = new Price();
             $price->product_id = $product->id;
-            $price->price = $request->price;
+            $price->price = $request->price_add;
             $price->save();
 
             return redirect()->back();
@@ -63,6 +63,38 @@ class AdminProductController extends Controller
 
     }
 
+    
+
+    public function changeAmountProduct( Request $request )
+    {
+
+        //dd($request->all());
+        $validator = Validator::make($request->all(), [
+
+            'id_amt'  => 'required|integer',
+            'amount_amt'   => 'required|integer',      
+        
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        }else{
+
+            $product = Product::findOrFail($request->id_amt);
+            $product->amount = $request->amount_amt;
+
+            if($product->save()){
+                return redirect()->back();
+            }
+
+        }
+        
+        
+
+    }
+
     public function changePriceProduct( Request $request )
     {
         //dd($request->all());
@@ -79,12 +111,12 @@ class AdminProductController extends Controller
 
         }else{
 
-            $product = Product::findOrFail($request->snack_id);
-            $product->price = $request->price;
+            $product = Product::findOrFail($request->id_chg);
+            $product->price = $request->price_chg;
 
             $price = new Price();
-            $price->product_id = $request->snack_id;
-            $price->price = $request->price;
+            $price->product_id = $request->id_chg;
+            $price->price = $request->price_chg;
 
             if($product->save() && $price->save())
             {
@@ -97,34 +129,6 @@ class AdminProductController extends Controller
 
     }
 
-    public function changeAmountProduct( Request $request )
-    {
-
-        $validator = Validator::make($request->all(), [
-
-            'id_amt'  => 'required|integer',
-            'amount_amt'   => 'required|integer',      
-        
-        ]);
-
-        if ($validator->fails()) {
-
-            return redirect()->back()->withErrors($validator)->withInput();
-
-        }else{
-
-            $product = Product::findOrFail($request->snack_id);
-            $product->amount = $request->amount;
-
-            if($product->save()){
-                return redirect()->back();
-            }
-
-        }
-        
-        
-
-    }
 
     public function priceLog( $id )
     {

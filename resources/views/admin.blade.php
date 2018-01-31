@@ -121,15 +121,15 @@
                     <form class="form-horizontal" method="POST" action="{{ route('add.product') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('id_add') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="id_add" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" required autofocus>
 
-                                @if ($errors->has('id_add'))
+                                @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('id_add') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
