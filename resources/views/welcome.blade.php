@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-body" id="panelito">
                     <div class="row" >
-                        <form method="get" action="{{ route('search.product') }}">
+                        <form method="get" action="{{ route('web.search.product') }}">
                             {{ csrf_field() }}    
 
                         
@@ -20,7 +20,7 @@
                             </form>
                         </div>
                         <div class="col-md-3">
-                            <form method="get" action="popular_Snacks" >
+                            <form method="get" action="most_popular_Snacks" >
                                 <button class="btn btn-default" >Most Popular</button>    
                             </form>
                         </div>

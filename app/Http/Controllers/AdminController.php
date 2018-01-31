@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function index()
     {   
         //get products
-        $products = Product:::orderBy('name', 'ASC')->paginate(9);
+        $products = Product::orderBy('name', 'ASC')->paginate(9);
         return view('admin', compact('products'));
     }
 }

@@ -30,6 +30,8 @@ Route::put('/buysnack', 'StoreController@buysnack')->name('buy.product');
 Route::get('/searchSnacks', 'StoreController@searchSnack')->name('search.product');
 Route::get('/popular_Snacks', 'StoreController@popularSnacks')->name('popular.products');
 
+Route::get('/web_searchSnacks', 'GuestController@searchSnack')->name('web.search.product');
+Route::get('/most_popular_Snacks', 'GuestController@popularSnacks')->name('most.popular.products');
 
 
 
