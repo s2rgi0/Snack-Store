@@ -144,7 +144,8 @@ class AdminProductController extends Controller
     {
         $snack = Product::findOrFail($id);
         $sales = Sale::where('product_id',$id)->paginate(9);
+        $grl_sales = Sale::all();
         //dd($sales);
-        return view('snacks.sales', compact('sales','snack'));
+        return view('snacks.sales', compact('sales','snack','grl_sales'));
     }
 }
