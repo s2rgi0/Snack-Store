@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Price;
@@ -19,20 +20,35 @@ class AdminProductController extends Controller
     public function addProduct( Request $request )
     {
         //dd($request->all());
-        $product = new Product;
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->amount = $request->amount;
-        $product->likes = 0;
+        $validator = Validator::make($request->all(), [
+            'id_add'  => 'required|integer',
+            'price_add'   => 'required|numeric|between:0,9999.99',
+            'amount_add'   => 'required|integer',       
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        }else{
+
+            $product = new Product;
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->amount = $request->amount;
+            $product->likes = 0;
         
-        $product->save();
+            $product->save();
 
-        $price = new Price();
-        $price->product_id = $product->id;
-        $price->price = $request->price;
-        $price->save();
+            $price = new Price();
+            $price->product_id = $product->id;
+            $price->price = $request->price;
+            $price->save();
 
-        return redirect()->back();
+            return redirect()->back();
+        }
+
+        
 
     }
     public function removeProduct( Request $request )
@@ -50,35 +66,72 @@ class AdminProductController extends Controller
     public function changePriceProduct( Request $request )
     {
         //dd($request->all());
-        $product = Product::findOrFail($request->snack_id);
-        $product->price = $request->price;
+        $validator = Validator::make($request->all(), [
 
-        $price = new Price();
-        $price->product_id = $request->snack_id;
-        $price->price = $request->price;
+            'id_chg'  => 'required|integer',
+            'price_chg'   => 'required|numeric|between:0,9999.99',      
+        
+        ]);
 
-        if($product->save() && $price->save())
-        {
-            return redirect()->back();
-        }        
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        }else{
+
+            $product = Product::findOrFail($request->snack_id);
+            $product->price = $request->price;
+
+            $price = new Price();
+            $price->product_id = $request->snack_id;
+            $price->price = $request->price;
+
+            if($product->save() && $price->save())
+            {
+                return redirect()->back();
+            } 
+        }
+
+
+               
 
     }
 
     public function changeAmountProduct( Request $request )
     {
+
+        $validator = Validator::make($request->all(), [
+
+            'id_amt'  => 'required|integer',
+            'amount_amt'   => 'required|integer',      
         
-        $product = Product::findOrFail($request->snack_id);
-        $product->amount = $request->amount;
-        if($product->save()){
-            return redirect()->back();
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        }else{
+
+            $product = Product::findOrFail($request->snack_id);
+            $product->amount = $request->amount;
+
+            if($product->save()){
+                return redirect()->back();
+            }
+
         }
+        
+        
 
     }
 
     public function priceLog( $id )
     {
+        //dd($id);
         $snack = Product::findOrFail($id);
-        $prices = Price::findOrFail($id)->paginate(9);
+        $prices = Price::where('product_id',$id)->paginate(9);
+        //dd($prices);
         return view('snacks.prices', compact('prices','snack'));
 
     }
@@ -86,7 +139,7 @@ class AdminProductController extends Controller
     public function salesLog( $id )
     {
         $snack = Product::findOrFail($id);
-        $sales = Sale::findOrFail($id)->paginate(9);
+        $sales = Sale::where('product_id',$id)->paginate(9);
         //dd($sales);
         return view('snacks.sales', compact('sales','snack'));
     }

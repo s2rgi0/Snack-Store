@@ -59,7 +59,7 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2" style="color:  #ffad33;"  >
-            <h3>Price Log or Remove Snacks</h3>
+            <h3>Price & Sales logs</h3>
         </div>
     </div>
 
@@ -121,43 +121,43 @@
                     <form class="form-horizontal" method="POST" action="{{ route('add.product') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('id_add') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                <input id="name" type="text" class="form-control" name="id_add" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('id_add'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('id_add') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('price_add') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="text" class="form-control" name="price" required>
+                                <input id="price" type="text" class="form-control" name="price_add" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('price_add'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('price_add') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('amount_add') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Amount</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="text" class="form-control" name="amount" required>
+                                <input id="password" type="text" class="form-control" name="amount_add" required>
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('amount_add'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('amount_add') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -225,30 +225,30 @@
                     <div class="form-horizontal">
                         {{ Form::open(['method' => 'PUT', 'route' => 'change.product.price', ]) }}
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('snack_id') ? ' has-error' : '' }}">                            
+                        <div class="form-group{{ $errors->has('id_chg') ? ' has-error' : '' }}">                            
                             
                             <label for="name" class="col-md-4 control-label">ID</label>
 
                             <div class="col-md-6">
-                                <input id="snack_id" type="text" class="form-control" name="snack_id" required autofocus>
+                                <input id="snack_id" type="text" class="form-control" name="id_chg" required autofocus>
 
-                                @if ($errors->has('snack_id'))
+                                @if ($errors->has('id_chg'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('snack_id') }}</strong>
+                                        <strong>{{ $errors->first('id_chg') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('price_chg') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="text" class="form-control" name="price" required>
+                                <input id="price" type="text" class="form-control" name="price_chg" required>
 
-                                @if ($errors->has('price'))
+                                @if ($errors->has('price_chg'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('price') }}</strong>
+                                        <strong>{{ $errors->first('price_chg') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -276,30 +276,30 @@
                     <div class="form-horizontal">
                         {{ Form::open(['method' => 'PUT', 'route' => 'change.product.amount', ]) }}
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('snack_id') ? ' has-error' : '' }}">                            
+                        <div class="form-group{{ $errors->has('id_amt') ? ' has-error' : '' }}">                            
                        
                             <label for="name" class="col-md-4 control-label">ID</label>
 
                             <div class="col-md-6">
-                                <input id="snack_id" type="text" class="form-control" name="snack_id" required autofocus>
+                                <input id="snack_id" type="text" class="form-control" name="id_amt" required autofocus>
 
-                                @if ($errors->has('snack_id'))
+                                @if ($errors->has('id_amt'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('snack_id') }}</strong>
+                                        <strong>{{ $errors->first('id_amt') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('amount_amt') ? ' has-error' : '' }}">
                             <label for="amount" class="col-md-4 control-label">Amount</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" required>
+                                <input id="amount" type="text" class="form-control" name="amount_amt" required>
 
-                                @if ($errors->has('amount'))
+                                @if ($errors->has('amount_amt'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
+                                        <strong>{{ $errors->first('amount_amt') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -38,9 +38,11 @@ Route::get('/most_popular_Snacks', 'GuestController@popularSnacks')->name('most.
 Route::prefix('admin')->group(function(){
 	
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+	
 	Route::put('/changeprice', 'AdminProductController@changePriceProduct')->name('change.product.price');
 	Route::put('/changeamount', 'AdminProductController@changeAmountProduct')->name('change.product.amount');
-	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+	
 	
 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
 
