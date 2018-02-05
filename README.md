@@ -44,10 +44,15 @@ https://drive.google.com/file/d/1i1pMloBuLCpFROpwI2lE0y2ukDYV3XrA/view?usp=shari
 
 after that you should be able to setup your .env file 
 start your Mysql service with XAMPP server
-and run your laravel app preferably not in the htdocs of your xampp server 
+and run your laravel app preferably not in the htdocs of your xampp server with 
 
 php artisan serve
 
+
+you can create your users and admins on the register form
+admin panel is in 
+
+/admin
 
 
 
