@@ -65,7 +65,7 @@
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <select id="role" name="role" type="text" class="form-control" value0="{{ old('role') }}" required >
+                                <select id="role" name="role" type="text" class="form-control" value="{{ old('role') }}" required >
                                     @foreach( $roles as $role )
                                         <option value="{{ $role->id }}" >{{ $role->name }}</option>
                                     @endforeach

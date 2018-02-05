@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\DB;
 
 class CheckRole
 {
@@ -15,9 +16,20 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        if (! $request->user()->hasRole($role)) {
-            abort(401, 'This action is unauthorized.');
-        }
-        return $next($request);
+
+        $id = $request->user()->id;
+        $role = DB::table('role_users')->select('role_id')->where('user_id', $id )->get();
+
+         if( $role[0]->role_id == 2 ){
+
+                return redirect('/home');
+
+            }else{
+
+                return $next($request);
+
+            }
+
+        
     }
 }
