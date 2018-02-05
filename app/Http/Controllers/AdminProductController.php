@@ -14,7 +14,8 @@ class AdminProductController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth');
+        $this->middleware('role');
     }
 
     public function addProduct( Request $request )
