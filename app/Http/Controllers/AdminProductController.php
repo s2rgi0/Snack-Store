@@ -146,10 +146,8 @@ class AdminProductController extends Controller
         $sales = Sale::where('product_id',$id)->paginate(9);
         $grl_sales = Sale::all();
         //dd($sales);
-<<<<<<< HEAD
-=======
         $grl_sales = Sale::all();
->>>>>>> 0ca1ad266965ab61a46ce8969d1dc77282b89fe0
+
         return view('snacks.sales', compact('sales','snack','grl_sales'));
     }
 }
