@@ -121,11 +121,8 @@ return [
     |
     */
 
-<<<<<<< HEAD
     //'log' => env('APP_LOG', 'single'),
 
-=======
->>>>>>> 0ca1ad266965ab61a46ce8969d1dc77282b89fe0
     'log' => 'errorlog',
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
