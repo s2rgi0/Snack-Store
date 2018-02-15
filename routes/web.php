@@ -34,6 +34,9 @@ Route::get('/web_searchSnacks', 'GuestController@searchSnack')->name('web.search
 Route::get('/most_popular_Snacks', 'GuestController@popularSnacks')->name('most.popular.products');
 
 
+Route::get('/Add_Users','UserController@AddUser');
+Route::post('/Add_Roll_Users','UserController@AddNewRoll')->name('role.user.submit');
+
 
 Route::prefix('admin')->group(function(){
 	
@@ -52,6 +55,7 @@ Route::prefix('admin')->group(function(){
 
 	Route::post('/', 'AdminProductController@addProduct')->name('add.product');
 	Route::delete('/remove', 'AdminProductController@removeProduct')->name('remove.product');
+
 
 	
 });
